@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+OLDDIR=$(pwd)
+
 APPDIR="$(dirname -- "$(readlink -f -- "${0}")" )"
 
 sed -i "/sketchbook.path=/c\sketchbook.path=$APPDIR/sketchbook"  $APPDIR/preferences.txt
-$APPDIR/arduino  --preferences-file $APPDIR/preferences.txt
+cd $APPDIR
+./arduino  --preferences-file $APPDIR/preferences.txt
 
+cd $OLDDIR
